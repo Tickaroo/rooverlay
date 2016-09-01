@@ -1,0 +1,40 @@
+{
+  "name": "rooverlay",
+  "version": "0.0.0",
+  "description": "Overlay library to display image/video galleries, html or iframes",
+  "homepage": "https://github.com/Tickaroo/rooverlay",
+  "author": "Anton Pawlik <anton.pawlik@gmail.com> (http://antpaw.org)",
+  "license": "MIT",
+  "keywords": [
+    "overlay",
+    "gallery",
+    "image-gallery",
+    "fancybox"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com/Tickaroo/rooverlay.git"
+  },
+  "main": "src/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "build": "webpack && cp ./src/index.scss ./dist/index.css && cp ./src/images.scss ./dist/images.css",
+    "watch": "npm run build -- --watch",
+    "test": "mocha",
+    "testdbg": "mocha --debug-brk",
+    "lint": "jshint **.js **/*.js **/**/*.js",
+    "coverage": "istanbul cover node_modules/.bin/_mocha"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "codecov.io": "^0.1.6",
+    "istanbul": "^0.4.2",
+    "jsdom": "^9.4.5",
+    "jshint": "^2.9.1",
+    "mocha": "^3.0.2",
+    "should": "^11.1.0",
+    "webpack": "^1.13.1"
+  }
+}
