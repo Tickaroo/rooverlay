@@ -62,10 +62,11 @@ var rooverlay = new Rooverlay({
 
 ## API
 
-`new Rooverlay(options)`:
+#### `new Rooverlay(options)`:
 
 - **options**:
   - **closeOnOverlayClick**: Closes slideshow on overlay background click. (default `false`)
+  - **slideIndex**: Initial start index of the slideshow slides. (default `0`)
   - **loop**: Loops slideshow. (default `false`)
   - **pagination**: Shows pagination. (default `false`)
   - **container**: Element slideshow will be appended to. (default `document.body`)
@@ -78,7 +79,7 @@ var rooverlay = new Rooverlay({
     - **missing**: Appears when content can't be loaded. (default `'Missing'`)
 
 
-`instance.updateOptions(options, rerender)`:
+#### `instance.updateOptions(options, rerender)`:
 
 Update the initial options.
 
@@ -86,15 +87,15 @@ Update the initial options.
 - **rerender**: Will rerender slideshow with new settings. (default `false`)
 
 
-`instance.nextSlide()`:
+#### `instance.nextSlide()`:
 
 Go to the next slide.
 
-`instance.previousSlide()`:
+#### `instance.previousSlide()`:
 
 Go to the previous slide.
 
-`instance.jumpToSlide(index)`:
+#### `instance.jumpToSlide(index)`:
 
 Will jump to the index. (default `0`)
 
