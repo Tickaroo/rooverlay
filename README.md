@@ -64,27 +64,28 @@ var rooverlay = new Rooverlay({
 
 #### `new Rooverlay(options)`:
 
-- **options**:
-  - **closeOnOverlayClick**: Closes slideshow on overlay background click. (default `false`)
-  - **slideIndex**: Initial start index of the slideshow slides. (default `0`)
-  - **loop**: Loops slideshow. (default `false`)
-  - **pagination**: Shows pagination. (default `false`)
-  - **container**: Element slideshow will be appended to. (default `document.body`)
-  - **onBeforeClose**: Callback after closing the overlay. (default `undefined`)
-  - **onAfterSlideRender**: Callback after slide renders. (default `undefined`)
-  - **onBeforeSlideRender**: Callback before slide renders. (default `undefined`)
-  - **i18n**:
+- **`options`**:
+  - **`closeOnOverlayClick`**: Closes slideshow on overlay background click. (default `false`)
+  - **`slideIndex`**: Initial start index of the slideshow slides. (default `0`)
+  - **`loop`**: Loops slideshow. (default `false`)
+  - **`skin`**: Slideshow layout skin, possible values are `'light'` and `'dark'` (default `'dark'`, `undefined`)
+  - **`pagination`**: Shows pagination. (default `false`)
+  - **`container`**: Element slideshow will be appended to. (default `document.body`)
+  - **`onBeforeClose`**: Callback after closing the overlay. (default `undefined`)
+  - **`onAfterSlideRender`**: Callback after slide renders. (default `undefined`)
+  - **`onBeforeSlideRender`**: Callback before slide renders. (default `undefined`)
+  - **`i18n`**:
     Text displayed to the user.
     (type `PlainObject`)
-    - **missing**: Appears when content can't be loaded. (default `'Missing'`)
+    - **`missing`**: Appears when content can't be loaded. (default `'Missing'`)
 
 
 #### `instance.updateOptions(options, rerender)`:
 
 Update the initial options.
 
-- **options**: Same as in initialization.
-- **rerender**: Will rerender slideshow with new settings. (default `false`)
+- **`options`**: Same as in initialization.
+- **`rerender`**: Will re-render slideshow with new settings. (default `false`)
 
 
 #### `instance.nextSlide()`:
@@ -111,5 +112,5 @@ Will jump to the index. (default `0`)
 
 ### Classes
 
-- **.rooverlay-overlay**: Overlay background-color
-- **.rooverlay-description**: Description box color, background-color and padding
+- **`.rooverlay-overlay`**: Overlay background-color
+- **`.rooverlay-description`**: Description box color, background-color and padding

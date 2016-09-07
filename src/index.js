@@ -81,6 +81,7 @@ Rooverlay.prototype.updateOptions = function updateOptions(options, rerender){
   options = options || {};
   this.options = {
     closeOnOverlayClick: options.closeOnOverlayClick,
+    skin:       options.skin,
     pagination: options.pagination,
     container:  options.container  || document.body,
     loop:       options.loop,
@@ -106,7 +107,6 @@ Rooverlay.prototype.updateOptions = function updateOptions(options, rerender){
 
 Rooverlay.prototype.wrapperTemplate = function wrapperTemplate(){
   var elem = document.createElement('div');
-  elem.className = 'rooverlay-wrapper';
   elem.innerHTML = '\
 <div class="rooverlay-overlay"></div>\
 <div class="rooverlay-content"></div>\
@@ -329,7 +329,11 @@ Rooverlay.prototype.renderSlide = function renderSlide(){
     this.iframeElem.onerror = undefined;
   }
 
-  this.elems.wrapper.className = 'rooverlay-wrapper rooverlay-type-' + slide.type;
+  var skin = '';
+  if (this.options.skin === 'light') {
+    skin = ' rooverlay-skin-light';
+  }
+  this.elems.wrapper.className = 'rooverlay-wrapper rooverlay-type-' + slide.type + skin;
   this.checkArrows();
 
   var self = this;
