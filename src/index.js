@@ -365,6 +365,7 @@ Rooverlay.prototype.renderSlide = function renderSlide(){
       self.elems.content.innerHTML = '';
       this.showClose();
       this.showLoading();
+      this.updatePagination();
       this.iframeElem = document.createElement('iframe');
       this.iframeElem.className = 'rooverlay-video-frame';
       this.elems.content.appendChild(this.iframeElem);
@@ -387,6 +388,7 @@ Rooverlay.prototype.renderSlide = function renderSlide(){
     case 'iframe':
       self.elems.content.innerHTML = '';
       this.showLoading();
+      this.updatePagination();
       self.fit();
       this.iframeElem = document.createElement('iframe');
       this.iframeElem.onload = function(){
@@ -461,10 +463,14 @@ Rooverlay.prototype.afterSlideRender = function afterSlideRender(){
   else {
     this.elems.title.innerHTML = '';
   }
+  this.updatePagination();
+  this.options.onAfterSlideRender();
+};
+
+Rooverlay.prototype.updatePagination = function afterSlideRender(){
   if (this.options.pagination){
     this.elems.pagination.innerHTML = (this.currentSlideIndex + 1) + '/' + (this.lastSlideIndex + 1);
   }
-  this.options.onAfterSlideRender();
 };
 
 Rooverlay.prototype.close = Rooverlay.prototype.destroy = function destroy(){
