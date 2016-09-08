@@ -57,6 +57,17 @@ describe('Rooverlay', function() {
       }, 6);
     });
 
+    it('should render "skin" option', function(done) {
+      defaultRooverlay({
+        skin: 'light'
+      });
+
+      setTimeout(function(){
+        expect(elem.querySelector('.rooverlay-wrapper').classList.contains('rooverlay-skin-light')).to.equal(true);
+        done();
+      }, 6);
+    });
+
     it('should update options', function(done) {
       var rooverlay = defaultRooverlay({
         slides: false
@@ -219,8 +230,7 @@ describe('Rooverlay', function() {
 
     describe('_calculateSize', function(){
       it('should calculate with aspectRatio', function() {
-        var rooverlay = defaultRooverlay();
-        var size = rooverlay._calculateSize({
+        var size = Rooverlay.prototype._calculateSize({
           height: 1600,
           width: 1200,
           aspectRatio: true
@@ -229,14 +239,82 @@ describe('Rooverlay', function() {
         expect(size.height).to.equal(600);
       });
       it('should calculate without aspectRatio', function() {
-        var rooverlay = defaultRooverlay();
-        var size = rooverlay._calculateSize({
-          height: 1600,
+        var size = Rooverlay.prototype._calculateSize({
           width: 1200,
+          height: 1600,
           aspectRatio: false
         }, 500, 600);
         expect(size.width).to.equal(500);
         expect(size.height).to.equal(600);
+      });
+      it('should calculate without aspectRatio and big window size', function() {
+        var size = Rooverlay.prototype._calculateSize({
+          width: 1200,
+          height: 1600,
+          aspectRatio: false
+        }, 2000, 2600);
+        expect(size.width).to.equal(1200);
+        expect(size.height).to.equal(2600);
+      });
+      it('should calculate with aspectRatio and minSize', function() {
+        var size = Rooverlay.prototype._calculateSize({
+          height: 100,
+          width: 40,
+          minHeight: 200,
+          minWidth: 200,
+          aspectRatio: true
+        }, 500, 600);
+        expect(size.width).to.equal(200);
+        expect(size.minWidth).to.equal(200);
+        expect(size.height).to.equal(200);
+        expect(size.minHeight).to.equal(200);
+      });
+      it('should calculate with aspectRatio and minSize but ignore minWidth because of window size', function() {
+        var size = Rooverlay.prototype._calculateSize({
+          height: 100,
+          width: 40,
+          minHeight: 200,
+          minWidth: 200,
+          aspectRatio: true
+        }, 150, 400);
+        expect(size.height).to.equal(200);
+        expect(size.minHeight).to.equal(200);
+        expect(size.width).to.equal(40);
+        expect(size.minWidth).to.equal(undefined);
+      });
+    });
+
+
+    describe('_getSizeSettings', function(){
+      it('should setup for "image"', function() {
+        var sizeSettings = Rooverlay.prototype._getSizeSettings({
+          type: 'image',
+          width: 150,
+          height: 200
+        }, {
+          width: 200,
+          height: 300
+        });
+        expect(sizeSettings.width).to.equal(150);
+        expect(sizeSettings.height).to.equal(200);
+        expect(sizeSettings.minHeight).to.equal(300);
+        expect(sizeSettings.minHeight).to.equal(300);
+      });
+      it('should setup for "image" and override minSize', function() {
+        var sizeSettings = Rooverlay.prototype._getSizeSettings({
+          type: 'image',
+          width: 150,
+          height: 200,
+          minHeight: 100,
+          minWidth: 100
+        }, {
+          width: 200,
+          height: 300
+        });
+        expect(sizeSettings.width).to.equal(150);
+        expect(sizeSettings.height).to.equal(200);
+        expect(sizeSettings.minHeight).to.equal(100);
+        expect(sizeSettings.minHeight).to.equal(100);
       });
     });
 

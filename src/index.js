@@ -132,34 +132,7 @@ Rooverlay.prototype.fit = function fit(){
   var holderWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
   var holderHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
-  var sizeSettings = {
-    height: 0,
-    width: 0,
-    aspectRatio: false
-  };
-  switch (this.slide.type){
-    case 'image':
-      sizeSettings = {
-        height: this.slide.height || this.imageElem.naturalHeight || this.imageElem.height,
-        width: this.slide.width || this.imageElem.naturalWidth || this.imageElem.width,
-        aspectRatio: this.slide.aspectRatio || true
-      };
-    break;
-    case 'iframe-video':
-      sizeSettings = {
-        height: this.slide.height || 450,
-        width: this.slide.width || 800,
-        aspectRatio: this.slide.aspectRatio || true
-      };
-    break;
-    default:
-      sizeSettings = {
-        height: this.slide.height,
-        width: this.slide.width || 600,
-        aspectRatio: this.slide.aspectRatio || false
-      };
-    break;
-  }
+  var sizeSettings = this._getSizeSettings(this.slide, this.imageElem);
   var size = this._calculateSize(sizeSettings, holderWidth - this.getMarginWidth(), holderHeight - this.getMarginHeight());
   if ( ! size){
     return;
@@ -167,9 +140,11 @@ Rooverlay.prototype.fit = function fit(){
 
   this.elems.content.style.width = size.width + 'px';
   this.elems.content.style.height = size.height + 'px';
+  this.elems.content.style.minWidth = size.minWidth ? (size.minWidth + 'px') : '';
+  this.elems.content.style.minHeight = size.minHeight ? (size.minHeight + 'px') : '';
+
   this.elems.content.style.top = (holderHeight - size.height) / 2 + 'px';
   this.elems.content.style.left = (holderWidth - size.width) / 2 + 'px';
-
   this._balanceDescriptionHeight();
 };
 
@@ -184,10 +159,39 @@ Rooverlay.prototype._balanceDescriptionHeight = function _balanceDescriptionHeig
   this.elems.content.style.marginTop = '0px';
 };
 
+Rooverlay.prototype._getSizeSettings = function _getSizeSettings(slide, imageElem){
+  var sizeSettings = {
+    height: 0,
+    width: 0,
+    minWidth: slide.minWidth,
+    minHeight: slide.minHeight,
+    aspectRatio: false
+  };
+  switch (slide.type){
+    case 'image':
+      sizeSettings.width = slide.width || imageElem.naturalWidth || imageElem.width;
+      sizeSettings.height = slide.height || imageElem.naturalHeight || imageElem.height;
+      sizeSettings.minWidth = sizeSettings.minWidth || 300;
+      sizeSettings.minHeight = sizeSettings.minHeight || 300;
+      sizeSettings.aspectRatio = slide.aspectRatio || true;
+    break;
+    case 'iframe-video':
+      sizeSettings.width = slide.width || 800;
+      sizeSettings.height = slide.height || 450;
+      sizeSettings.aspectRatio = slide.aspectRatio || true;
+    break;
+    default:
+      sizeSettings.width = slide.width || 600;
+      sizeSettings.height = slide.height || sizeSettings.height;
+      sizeSettings.aspectRatio = slide.aspectRatio || false;
+    break;
+  }
+  return sizeSettings;
+};
+
 Rooverlay.prototype._calculateSize = function _calculateSize(sizeSettings, holderGlobalWidth, holderGlobalHeight){
-  var height;
-  var width;
-  var holderGlobalRatio = (holderGlobalHeight / holderGlobalWidth);
+  var height, minHeight, width, minWidth;
+  var holderGlobalRatio = holderGlobalHeight / holderGlobalWidth;
 
   if (sizeSettings.aspectRatio){
     if ( ! sizeSettings.height || ! sizeSettings.width){
@@ -216,7 +220,22 @@ Rooverlay.prototype._calculateSize = function _calculateSize(sizeSettings, holde
     }
     height = holderGlobalHeight;
   }
-  return {width: width, height: height};
+
+  if (width < sizeSettings.minWidth && sizeSettings.minWidth < holderGlobalWidth) {
+    minWidth = sizeSettings.minWidth;
+    width = sizeSettings.minWidth;
+  }
+  if (height < sizeSettings.minHeight && sizeSettings.minHeight < holderGlobalHeight) {
+    minHeight = sizeSettings.minHeight;
+    height = sizeSettings.minHeight;
+  }
+
+  return {
+    width: width,
+    minWidth: minWidth,
+    height: height,
+    minHeight: minHeight
+  };
 };
 
 Rooverlay.prototype.checkArrows = function checkArrows(){
