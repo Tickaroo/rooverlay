@@ -21,7 +21,7 @@
   },
   "scripts": {
     "build": "webpack && cp ./src/index.scss ./dist/index.css && cp ./src/images.scss ./dist/images.css",
-    "watch": "npm run build -- --watch",
+    "watch": "webpack --watch",
     "test": "mocha",
     "testdbg": "mocha --debug-brk",
     "lint": "jshint **.js **/*.js **/**/*.js",

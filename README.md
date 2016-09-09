@@ -79,6 +79,50 @@ var rooverlay = new Rooverlay({
     Text displayed to the user.
     (type `PlainObject`)
     - **`missing`**: Appears when content can't be loaded. (default `'Missing'`)
+  - **`slides`**:
+    Slides that will be displayed in the overlay.
+    (type `Array<PlainObject>` default `[]`)  
+
+  #### Image slide:
+    - **`type`**: `'image'`
+    - **`src`**: Image url. (default `undefined`)
+    - **`width`**: Maximal image width. (default dynamic image width)
+    - **`height`**: Maximal image height. (default dynamic image height)
+    - **`minWidth`**: Minimal image width, if window size allows it. (default `300`)
+    - **`minHeight`**: Minimal image height, if window size allows it. (default `300`)
+    - **`aspectRatio`**: Whether or not to respect image size ratio on resize. (default `true`)
+    - **`description`**: Description text/HTML string appended to the content element. (default `undefined`)
+    - **`title`**: Title text/HTML string appended to the top row title element. (default `undefined`)
+
+  #### Video iframe slide:
+    - **`type`**: `'iframe-video'`
+    - **`src`**: Iframe url. (default `undefined`)
+    - **`width`**: Maximal iframe width. (default `800`)
+    - **`height`**: Maximal iframe height. (default `450`)
+    - **`minWidth`**: Minimal iframe width, if window size allows it. (default `undefined`)
+    - **`minHeight`**: Minimal iframe height, if window size allows it. (default `undefined`)
+    - **`aspectRatio`**: Whether or not to respect iframe size ratio on resize. (default `true`)
+    - **`description`**: Same as in `image`
+    - **`title`**: Same as in `image`
+
+  #### Iframe slide:
+    - **`type`**: `'iframe'`
+    - **`src`**: Iframe url. (default `undefined`)
+    - **`width`**: Maximal iframe width. (default `800`)
+    - **`height`**: Maximal iframe height. (default `450`)
+    - **`minWidth`**: Minimal iframe width, if window size allows it. (default `undefined`)
+    - **`minHeight`**: Minimal iframe height, if window size allows it. (default `undefined`)
+    - **`aspectRatio`**: Whether or not to respect iframe size ratio on resize. (default `false`)
+
+  #### HTML slide:
+    - **`type`**: `'html'`
+    - **`html`**: HTML string that will be set inside the content element. (default `undefined`)
+    - **`content`**: If `'html'` isn't set: DOM element that will be inserted to the content element. (default `undefined`)
+    - **`width`**: Maximal HTML width. (default `600`)
+    - **`height`**: Maximal HTML height. (default `undefined`)
+    - **`minWidth`**: Minimal html width, if window size allows it. (default `undefined`)
+    - **`minHeight`**: Minimal html height, if window size allows it. (default `undefined`)
+    - **`aspectRatio`**: Whether or not to respect html size ratio on resize. (default `false`)
 
 
 #### `instance.updateOptions(options, rerender)`:
