@@ -71,6 +71,7 @@ var rooverlay = new Rooverlay({
   - **`skin`**: Slideshow layout skin, possible values are `'light'` and `'dark'` (default `'dark'`, `undefined`)
   - **`pagination`**: Shows pagination. (default `false`)
   - **`container`**: Element slideshow will be appended to. (default `document.body`)
+  - **`disableKeyboardControls`**: Disable keyboard arrow key controls to go forward or back. (default `false`)
   - **`onBeforeClose`**: Callback after closing the overlay. (default `undefined`)
   - **`onAfterSlideRender`**: Callback after slide renders. (default `undefined`)
   - **`onBeforeSlideRender`**: Callback before slide renders. (default `undefined`)

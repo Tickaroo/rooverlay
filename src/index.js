@@ -48,17 +48,19 @@ function Rooverlay(options){
     });
   };
   this.keydownCallback = function(e){
-    if (e.which === 37){
+    if (e.which === 37 || e.which === 38){
       e.preventDefault();
       self.previousSlide();
     }
-    if (e.which === 39){
+    if (e.which === 39 || e.which === 40){
       e.preventDefault();
       self.nextSlide();
     }
   };
   addEvent(window, 'resize', this.resizeCallback);
-  addEvent(window, 'keydown', this.keydownCallback);
+  if ( ! this.options.disableKeyboardControls) {
+    addEvent(window, 'keydown', this.keydownCallback);
+  }
 
   this.options.container.appendChild(this.elems.wrapper);
   this.jumpToSlide(this.currentSlideIndex);
@@ -86,6 +88,7 @@ Rooverlay.prototype.updateOptions = function updateOptions(options, rerender){
     container:  options.container  || document.body,
     loop:       options.loop,
     i18n:       options.i18n       || {missing: 'Missing'},
+    disableKeyboardControls: options.disableKeyboardControls === true,
     onBeforeClose:       options.onBeforeClose       || noop,
     onAfterSlideRender:  options.onAfterSlideRender  || noop,
     onBeforeSlideRender: options.onBeforeSlideRender || noop
