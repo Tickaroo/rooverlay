@@ -9,7 +9,7 @@ This library has no dependencies and still weights just ~15 KB unminified.
 
 #### Compatibility
 
-Recent browsers such as : IE 8+, Safari, Firefox & Chrome.
+Recent browsers such as: IE 8+, Safari, Firefox & Chrome.
 
 
 ## Install
@@ -143,7 +143,19 @@ Go to the previous slide.
 
 #### `instance.jumpToSlide(index)`:
 
-Will jump to the index. (default `0`)
+Jump to the index. (default `0`)
+
+#### `instance.showLoading()`:
+
+Show loading spinner.
+
+#### `instance.hideLoading()`:
+
+Hides loading spinner.
+
+#### `instance.destroy()` or `instance.close()`:
+
+Close the overlay, remove it from the DOM and remove the event listeners, like `resize`.
 
 
 ## CSS
