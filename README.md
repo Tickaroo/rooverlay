@@ -70,6 +70,7 @@ var rooverlay = new Rooverlay({
   - **`loop`**: Loops slideshow. (default `false`)
   - **`skin`**: Slideshow layout skin, possible values are `'light'` and `'dark'` (default `'dark'`, `undefined`)
   - **`pagination`**: Shows pagination. (default `false`)
+  - **`paginationDescending`**: Counts the pages in descending order. (default `false`)
   - **`container`**: Element slideshow will be appended to. (default `document.body`)
   - **`disableKeyboardControls`**: Disable keyboard arrow key controls to go forward or back and the "escape" key to close the overlay. (default `false`)
   - **`onBeforeClose`**: Callback after closing the overlay. (default `undefined`)

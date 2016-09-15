@@ -1,3 +1,7 @@
+## 0.2.1 / 2016-09-15
+
+- `paginationDescending` option added
+
 ## 0.2.0 / 2016-09-15
 
 - Styling improved for `.rooverlay-description`

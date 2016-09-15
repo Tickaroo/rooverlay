@@ -97,12 +97,30 @@ describe('Rooverlay', function() {
 
     describe('pagination', function(){
       it('should render pagination', function(done) {
-        defaultRooverlay({
+        var rooverlay = defaultRooverlay({
           pagination: true
         });
         setTimeout(function(){
           expect(elem.querySelector('.rooverlay-pagination').innerHTML).to.equal('1/3');
-          done();
+          rooverlay.nextSlide();
+          setTimeout(function(){
+            expect(elem.querySelector('.rooverlay-pagination').innerHTML).to.equal('2/3');
+            done();
+          }, 6);
+        }, 6);
+      });
+      it('should render pagination in descending order', function(done) {
+        var rooverlay = defaultRooverlay({
+          pagination: true,
+          paginationDescending: true
+        });
+        setTimeout(function(){
+          expect(elem.querySelector('.rooverlay-pagination').innerHTML).to.equal('3/3');
+          rooverlay.nextSlide();
+          setTimeout(function(){
+            expect(elem.querySelector('.rooverlay-pagination').innerHTML).to.equal('2/3');
+            done();
+          }, 6);
         }, 6);
       });
     });

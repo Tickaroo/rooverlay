@@ -100,6 +100,7 @@ Rooverlay.prototype.updateOptions = function updateOptions(options){
     container:  options.container  || document.body,
     loop:       options.loop,
     i18n:       options.i18n       || {missing: 'Missing'},
+    paginationDescending:       options.paginationDescending === true,
     disableKeyboardControls: options.disableKeyboardControls === true,
     onBeforeClose:       options.onBeforeClose       || noop,
     onAfterSlideRender:  options.onAfterSlideRender  || noop,
@@ -492,7 +493,12 @@ Rooverlay.prototype.afterSlideRender = function afterSlideRender(){
 
 Rooverlay.prototype.updatePagination = function afterSlideRender(){
   if (this.options.pagination){
-    this.elems.pagination.innerHTML = (this.currentSlideIndex + 1) + '/' + (this.lastSlideIndex + 1);
+    if (this.options.paginationDescending){
+      this.elems.pagination.innerHTML = (this.lastSlideIndex - this.currentSlideIndex + 1) + '/' + (this.lastSlideIndex + 1);
+    }
+    else {
+      this.elems.pagination.innerHTML = (this.currentSlideIndex + 1) + '/' + (this.lastSlideIndex + 1);
+    }
   }
 };
 
