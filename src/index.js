@@ -67,6 +67,7 @@ function Rooverlay(options){
   }
 
   this.options.container.appendChild(this.elems.wrapper);
+  self.fit();
 }
 
 Rooverlay.prototype.getCurrentSlide = function getCurrentSlide(){
@@ -134,6 +135,7 @@ Rooverlay.prototype.wrapperTemplate = function wrapperTemplate(){
 };
 
 Rooverlay.prototype.fit = function fit(){
+  if ( ! this.slide) { return; }
   var holderWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
   var holderHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
@@ -166,8 +168,8 @@ Rooverlay.prototype._balanceDescriptionHeight = function _balanceDescriptionHeig
 
 Rooverlay.prototype._getSizeSettings = function _getSizeSettings(slide, imageElem){
   var sizeSettings = {
-    height: 0,
-    width: 0,
+    height: undefined,
+    width: undefined,
     minWidth: slide.minWidth,
     minHeight: slide.minHeight,
     aspectRatio: false
@@ -198,10 +200,7 @@ Rooverlay.prototype._calculateSize = function _calculateSize(sizeSettings, holde
   var height, minHeight, width, minWidth;
   var holderGlobalRatio = holderGlobalHeight / holderGlobalWidth;
 
-  if (sizeSettings.aspectRatio){
-    if ( ! sizeSettings.height || ! sizeSettings.width){
-      return;
-    }
+  if (sizeSettings.aspectRatio && sizeSettings.height && sizeSettings.width){
     var ratio = (sizeSettings.height / sizeSettings.width);
     if (ratio > holderGlobalRatio){
       height = holderGlobalHeight;
@@ -223,7 +222,12 @@ Rooverlay.prototype._calculateSize = function _calculateSize(sizeSettings, holde
     else {
       width = holderGlobalWidth;
     }
-    height = holderGlobalHeight;
+    if (holderGlobalHeight > sizeSettings.height){
+      height = sizeSettings.height;
+    }
+    else {
+      height = holderGlobalHeight;
+    }
   }
 
   if (width < sizeSettings.minWidth && sizeSettings.minWidth < holderGlobalWidth) {

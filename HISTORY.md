@@ -1,5 +1,6 @@
 ## 0.2.1 / 2016-09-15
 
+- Size calculations for dimension without aspected ratio improved
 - `paginationDescending` option added
 
 ## 0.2.0 / 2016-09-15

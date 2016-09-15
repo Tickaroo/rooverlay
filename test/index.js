@@ -265,6 +265,21 @@ describe('Rooverlay', function() {
         expect(size.width).to.equal(500);
         expect(size.height).to.equal(600);
       });
+      it('should calculate without aspectRatio and with height', function() {
+        var size = Rooverlay.prototype._calculateSize({
+          height: 400,
+          aspectRatio: false
+        }, 500, 600);
+        expect(size.width).to.equal(500);
+        expect(size.height).to.equal(400);
+      });
+      it('should calculate without aspectRatio and without height', function() {
+        var size = Rooverlay.prototype._calculateSize({
+          aspectRatio: false
+        }, 500, 600);
+        expect(size.width).to.equal(500);
+        expect(size.height).to.equal(600);
+      });
       it('should calculate without aspectRatio and big window size', function() {
         var size = Rooverlay.prototype._calculateSize({
           width: 1200,
@@ -272,7 +287,7 @@ describe('Rooverlay', function() {
           aspectRatio: false
         }, 2000, 2600);
         expect(size.width).to.equal(1200);
-        expect(size.height).to.equal(2600);
+        expect(size.height).to.equal(1600);
       });
       it('should calculate with aspectRatio and minSize', function() {
         var size = Rooverlay.prototype._calculateSize({
