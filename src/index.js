@@ -23,8 +23,6 @@ function removeEvent(element, eventName, callback){
 }
 
 function Rooverlay(options){
-  this.updateOptions(options);
-
   var wrapperElem = this.wrapperTemplate();
   this.elems = {
     wrapper: wrapperElem,
@@ -39,6 +37,8 @@ function Rooverlay(options){
     top: wrapperElem.querySelector('.rooverlay-top'),
     bottom: wrapperElem.querySelector('.rooverlay-bottom')
   };
+
+  this.updateOptions(options);
   this.bindEvents();
 
   var self = this;
@@ -67,7 +67,6 @@ function Rooverlay(options){
   }
 
   this.options.container.appendChild(this.elems.wrapper);
-  this.jumpToSlide(this.currentSlideIndex);
 }
 
 Rooverlay.prototype.getCurrentSlide = function getCurrentSlide(){
@@ -75,15 +74,24 @@ Rooverlay.prototype.getCurrentSlide = function getCurrentSlide(){
 };
 
 Rooverlay.prototype.updateSlides = function updateSlides(slides){
-  this.options.slides = slides || [];
+  if (slides && slides.length){
+    this.lastSlideIndex = slides.length - 1;
+    this.options.slides = slides;
+  } else {
+    this.currentSlideIndex = 0;
+    this.lastSlideIndex = 0;
+    this.options.slides = [];
+  }
 };
 
 Rooverlay.prototype.updateSlidesAndRerenderWithIndex = function updateSlidesAndRerender(slides, i){
   this.updateSlides(slides);
-  this.jumpToSlide(i || this.currentSlideIndex);
+  if (this.options.slides.length && i !== undefined){
+    this.jumpToSlide(i);
+  }
 };
 
-Rooverlay.prototype.updateOptions = function updateOptions(options, rerender){
+Rooverlay.prototype.updateOptions = function updateOptions(options){
   options = options || {};
   this.options = {
     closeOnOverlayClick: options.closeOnOverlayClick,
@@ -97,23 +105,12 @@ Rooverlay.prototype.updateOptions = function updateOptions(options, rerender){
     onAfterSlideRender:  options.onAfterSlideRender  || noop,
     onBeforeSlideRender: options.onBeforeSlideRender || noop
   };
-  this.currentSlideIndex = options.slideIndex || 0;
-  if (options.slides){
-    this.lastSlideIndex = options.slides.length - 1;
-    if (rerender){
-      this.updateSlidesAndRerenderWithIndex(options.slides);
-    }
-    else {
-      this.updateSlides(options.slides);
-    }
-  }
-  else {
-    this.lastSlideIndex = 0;
-  }
+  this.updateSlidesAndRerenderWithIndex(options.slides, options.slideIndex || 0);
 };
 
 Rooverlay.prototype.wrapperTemplate = function wrapperTemplate(){
   var elem = document.createElement('div');
+  elem.className = 'rooverlay-wrapper';
   elem.innerHTML = '\
 <div class="rooverlay-overlay"></div>\
 <div class="rooverlay-content"></div>\

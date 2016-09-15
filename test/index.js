@@ -87,7 +87,7 @@ describe('Rooverlay', function() {
             type: 'image',
             src: 'roo-pic-3.jpg'
           }]
-        }, true);
+        });
         setTimeout(function(){
           expect(elem.innerHTML).to.contain('roo-pic-1.jpg');
           done();
@@ -467,6 +467,7 @@ describe('Rooverlay', function() {
           i++;
         }
       });
+      expect(i).to.equal(1);
       rooverlay.nextSlide();
       rooverlay.nextSlide();
       expect(i).to.equal(3);

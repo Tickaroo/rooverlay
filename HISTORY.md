@@ -2,6 +2,7 @@
 
 - Styling improved for `.rooverlay-description`
 - "Escape" key support added
+- **Breaking**: `updateOptions` `rerender` parameter removed
 
 ## 0.1.0 / 2016-09-14
 

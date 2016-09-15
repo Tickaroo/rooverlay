@@ -125,13 +125,24 @@ var rooverlay = new Rooverlay({
     - **`aspectRatio`**: Whether or not to respect html size ratio on resize. (default `false`)
 
 
-#### `instance.updateOptions(options, rerender)`:
+#### `instance.updateOptions(options)`:
 
 Update the initial options.
 
 - **`options`**: Same as in initialization.
-- **`rerender`**: Will re-render slideshow with new settings. (default `false`)
 
+
+#### `instance.updateSlides(slides)`:
+
+Update the initial slides .
+- **`slides`**: Same as in initialization `options.slides`.
+
+#### `instance.updateSlidesAndRerenderWithIndex(slides, index)`:
+
+Update the initial slides and rerenders them with slide index if `index` is set.
+
+- **`slides`**: Same as in initialization `options.slides`.
+- **`index`**: Slide index (default `undefined`)
 
 #### `instance.nextSlide()`:
 
@@ -143,7 +154,9 @@ Go to the previous slide.
 
 #### `instance.jumpToSlide(index)`:
 
-Jump to the index. (default `0`)
+Jump to the index.
+
+- **`index`**: Slide index (default `0`)
 
 #### `instance.showLoading()`:
 
