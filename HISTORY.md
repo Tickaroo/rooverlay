@@ -1,3 +1,7 @@
+## 0.2.0 / 2016-09-15
+
+- Styling improved for `.rooverlay-description`
+
 ## 0.1.0 / 2016-09-14
 
 - Pagination counter improved

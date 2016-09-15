@@ -139,6 +139,8 @@
 .rooverlay-wrapper.rooverlay-type-image .rooverlay-description {
   position: absolute;
   bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 .rooverlay-wrapper.rooverlay-type-iframe-video .rooverlay-content {
   background-color: black;
