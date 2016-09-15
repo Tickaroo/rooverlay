@@ -1,3 +1,7 @@
+## 0.2.2 / 2016-09-15
+
+- Size calculation paddings improved
+
 ## 0.2.1 / 2016-09-15
 
 - Size calculations for dimension without aspected ratio improved

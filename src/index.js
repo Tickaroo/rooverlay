@@ -517,12 +517,24 @@ Rooverlay.prototype.getMarginWidth = function getMarginWidth(){
   if (this.options.marginWidth){
     return this.options.marginWidth;
   }
+  if ( ! this.elems.right.offsetWidth){
+    return (this.elems.left.offsetWidth || 10) * 2;
+  }
+  if ( ! this.elems.left.offsetWidth){
+    return this.elems.right.offsetWidth * 2;
+  }
   return this.elems.left.offsetWidth + this.elems.right.offsetWidth;
 };
 
 Rooverlay.prototype.getMarginHeight = function getMarginHeight(){
   if (this.options.marginHeight){
     return this.options.marginHeight;
+  }
+  if ( ! this.elems.bottom.offsetHeight){
+    return (this.elems.top.offsetHeight || 10) * 2;
+  }
+  if ( ! this.elems.top.offsetHeight){
+    return this.elems.bottom.offsetHeight * 2;
   }
   return this.elems.top.offsetHeight + this.elems.bottom.offsetHeight;
 };
