@@ -1,6 +1,7 @@
 ## 0.2.0 / 2016-09-15
 
 - Styling improved for `.rooverlay-description`
+- "Escape" key support added
 
 ## 0.1.0 / 2016-09-14
 

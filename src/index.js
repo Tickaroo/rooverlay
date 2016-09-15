@@ -48,6 +48,10 @@ function Rooverlay(options){
     });
   };
   this.keydownCallback = function(e){
+    if (e.which === 27){
+      e.preventDefault();
+      self.destroy();
+    }
     if (e.which === 37 || e.which === 38){
       e.preventDefault();
       self.previousSlide();
