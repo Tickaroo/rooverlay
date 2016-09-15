@@ -23,7 +23,7 @@ function removeEvent(element, eventName, callback){
 }
 
 function Rooverlay(options){
-  var wrapperElem = this.wrapperTemplate();
+  var wrapperElem = this.wrapperTemplate(options && options.skin);
   this.elems = {
     wrapper: wrapperElem,
     pagination: wrapperElem.querySelector('.rooverlay-pagination'),
@@ -110,14 +110,14 @@ Rooverlay.prototype.updateOptions = function updateOptions(options){
   this.updateSlidesAndRerenderWithIndex(options.slides, options.slideIndex || 0);
 };
 
-Rooverlay.prototype.wrapperTemplate = function wrapperTemplate(){
+Rooverlay.prototype.wrapperTemplate = function wrapperTemplate(skin){
   var elem = document.createElement('div');
-  elem.className = 'rooverlay-wrapper';
+  elem.className = this.getWrapperSkinClassName(skin);
   elem.innerHTML = '\
 <div class="rooverlay-overlay"></div>\
 <div class="rooverlay-content"></div>\
-<a href="#" class="rooverlay-left"></a>\
-<a href="#" class="rooverlay-right"></a>\
+<a href="#" class="rooverlay-left rooverlay-hide"></a>\
+<a href="#" class="rooverlay-right rooverlay-hide"></a>\
 <div class="rooverlay-top">\
   <div class="rooverlay-top-left">\
     <div class="rooverlay-pagination"></div>\
@@ -126,7 +126,7 @@ Rooverlay.prototype.wrapperTemplate = function wrapperTemplate(){
     <div class="rooverlay-title"></div>\
   </div>\
   <div class="rooverlay-top-right">\
-    <a href="#" class="rooverlay-close rooverlay-hide"></a>\
+    <a href="#" class="rooverlay-close"></a>\
   </div>\
 </div>\
 <div class="rooverlay-bottom"></div>\
@@ -338,6 +338,14 @@ Rooverlay.prototype.hideClose = function hideClose(){
   this.elems.close.className = 'rooverlay-close rooverlay-hide';
 };
 
+Rooverlay.prototype.getWrapperSkinClassName = function hideClose(skinType){
+  var skin = '';
+  if (skinType === 'light') {
+    skin = ' rooverlay-skin-light';
+  }
+  return 'rooverlay-wrapper' + skin;
+};
+
 Rooverlay.prototype.renderSlide = function renderSlide(){
   var slide = this.getCurrentSlide();
   if ( ! slide){
@@ -357,11 +365,7 @@ Rooverlay.prototype.renderSlide = function renderSlide(){
     this.iframeElem.onerror = undefined;
   }
 
-  var skin = '';
-  if (this.options.skin === 'light') {
-    skin = ' rooverlay-skin-light';
-  }
-  this.elems.wrapper.className = 'rooverlay-wrapper rooverlay-type-' + slide.type + skin;
+  this.elems.wrapper.className = this.getWrapperSkinClassName(this.options.skin) + ' rooverlay-type-' + slide.type;
   this.checkArrows();
 
   var self = this;

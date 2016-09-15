@@ -1,5 +1,6 @@
 ## 0.2.2 / 2016-09-15
 
+- `skin` option rendering improved
 - Size calculation paddings improved
 
 ## 0.2.1 / 2016-09-15
