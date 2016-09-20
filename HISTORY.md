@@ -1,3 +1,7 @@
+## 0.2.4 / 2016-09-20
+
+- Internal click event handling changed
+
 ## 0.2.3 / 2016-09-20
 
 - `z-index: 8000` added to `.rooverlay-wrapper`

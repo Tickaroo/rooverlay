@@ -4,6 +4,15 @@ function debounce(duration, callback){
   this.timerDebounce = setTimeout(callback, duration);
 }
 
+function preventAndStopDefaultEvent(e){
+  if (e.preventDefault){
+    e.preventDefault();
+  }
+  if (e.stopPropagation){
+    e.stopPropagation();
+  }
+}
+
 function addEvent(element, eventName, callback){
   if (element.addEventListener){
     element.addEventListener(eventName, callback);
@@ -278,20 +287,20 @@ Rooverlay.prototype.checkArrows = function checkArrows(){
 Rooverlay.prototype.bindEvents = function bindEvents(){
   var self = this;
   addEvent(this.elems.left, 'click', function(e){
-    e.preventDefault();
+    preventAndStopDefaultEvent(e);
     self.previousSlide();
   });
   addEvent(this.elems.right, 'click', function(e){
-    e.preventDefault();
+    preventAndStopDefaultEvent(e);
     self.nextSlide();
   });
   addEvent(this.elems.close, 'click', function(e){
-    e.preventDefault();
+    preventAndStopDefaultEvent(e);
     self.destroy();
   });
   if (this.options.closeOnOverlayClick){
     addEvent(this.elems.overlay, 'click', function(e){
-      e.preventDefault();
+      preventAndStopDefaultEvent(e);
       self.destroy();
     });
   }
