@@ -1,3 +1,7 @@
+## 0.2.3 / 2016-09-20
+
+- `z-index: 8000` added to `.rooverlay-wrapper`
+
 ## 0.2.2 / 2016-09-19
 
 - `skin` option rendering improved
