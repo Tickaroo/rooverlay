@@ -476,7 +476,7 @@ Rooverlay.prototype.changeToContentClose = function changeToContentClose(){
   contentCloseElem.href = '#';
   contentCloseElem.className = 'rooverlay-content-close';
   addEvent(contentCloseElem, 'click', function(e){
-    e.preventDefault();
+    preventAndStopDefaultEvent(e);
     self.destroy();
   });
   if (this.elems.content.firstChild){

@@ -1,3 +1,7 @@
+## 0.2.5 / 2016-09-20
+
+- Fixed internal click event handling
+
 ## 0.2.4 / 2016-09-20
 
 - Internal click event handling changed
