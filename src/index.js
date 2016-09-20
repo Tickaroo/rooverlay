@@ -366,12 +366,12 @@ Rooverlay.prototype.renderSlide = function renderSlide(){
   }
 
   if (this.imageElem){
-    this.imageElem.onload = undefined;
-    this.imageElem.onerror = undefined;
+    this.imageElem.onload = null;
+    this.imageElem.onerror = null;
   }
   if (this.iframeElem){
-    this.iframeElem.onload = undefined;
-    this.iframeElem.onerror = undefined;
+    this.iframeElem.onload = null;
+    this.iframeElem.onerror = null;
   }
 
   this.elems.wrapper.className = this.getWrapperSkinClassName(this.options.skin) + ' rooverlay-type-' + slide.type;
