@@ -366,12 +366,12 @@ Rooverlay.prototype.renderSlide = function renderSlide(){
   }
 
   if (this.imageElem){
-    this.imageElem.onload = null;
-    this.imageElem.onerror = null;
+    this.imageElem.onload = function(){};
+    this.imageElem.onerror = function(){};
   }
   if (this.iframeElem){
-    this.iframeElem.onload = null;
-    this.iframeElem.onerror = null;
+    this.iframeElem.onload = function(){};
+    this.iframeElem.onerror = function(){};
   }
 
   this.elems.wrapper.className = this.getWrapperSkinClassName(this.options.skin) + ' rooverlay-type-' + slide.type;
@@ -414,7 +414,7 @@ Rooverlay.prototype.renderSlide = function renderSlide(){
       this.fit();
       this.iframeElem.src = slide.src;
       this.iframeElem.onload = function(){
-        self.iframeElem.onload = undefined;
+        self.iframeElem.onload = function(){};
         self.hideLoading();
         self.afterSlideRender();
         self.fit();
@@ -433,7 +433,7 @@ Rooverlay.prototype.renderSlide = function renderSlide(){
       self.fit();
       this.iframeElem = document.createElement('iframe');
       this.iframeElem.onload = function(){
-        self.iframeElem.onload = undefined;
+        self.iframeElem.onload = function(){};
         self.hideLoading();
         self.afterSlideRender();
         self.fit();
