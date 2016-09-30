@@ -1,3 +1,7 @@
+## 0.2.6 / 2016-09-30
+
+- IE8 fixes
+
 ## 0.2.5 / 2016-09-20
 
 - Fixed IE `onload` callbacks unset
