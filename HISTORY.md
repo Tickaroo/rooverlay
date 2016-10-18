@@ -1,3 +1,7 @@
+## 1.0.0 / 2016-10-18
+
+- upgrade all modules to v1
+
 ## 0.2.6 / 2016-09-30
 
 - IE8 fixes
