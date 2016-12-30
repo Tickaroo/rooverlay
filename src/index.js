@@ -32,7 +32,8 @@ function removeEvent(element, eventName, callback){
 }
 
 function Rooverlay(options){
-  var wrapperElem = this.wrapperTemplate(options && options.skin);
+  options = options || {};
+  var wrapperElem = this.wrapperTemplate(this.getWrapperSkinClassName(options.skin, options.extraClasses));
   this.elems = {
     wrapper: wrapperElem,
     pagination: wrapperElem.querySelector('.rooverlay-pagination'),
@@ -102,7 +103,6 @@ Rooverlay.prototype.updateSlidesAndRerenderWithIndex = function updateSlidesAndR
 };
 
 Rooverlay.prototype.updateOptions = function updateOptions(options){
-  options = options || {};
   this.options = {
     closeOnOverlayClick: options.closeOnOverlayClick,
     skin:       options.skin,
@@ -110,7 +110,8 @@ Rooverlay.prototype.updateOptions = function updateOptions(options){
     container:  options.container  || document.body,
     loop:       options.loop,
     i18n:       options.i18n       || {missing: 'Missing'},
-    paginationDescending:       options.paginationDescending === true,
+    extraClasses: options.extraClasses || '',
+    paginationDescending:    options.paginationDescending === true,
     disableKeyboardControls: options.disableKeyboardControls === true,
     onBeforeClose:       options.onBeforeClose       || noop,
     onAfterSlideRender:  options.onAfterSlideRender  || noop,
@@ -119,9 +120,11 @@ Rooverlay.prototype.updateOptions = function updateOptions(options){
   this.updateSlidesAndRerenderWithIndex(options.slides, options.slideIndex || 0);
 };
 
-Rooverlay.prototype.wrapperTemplate = function wrapperTemplate(skin){
+Rooverlay.prototype.wrapperTemplate = function wrapperTemplate(classes){
   var elem = document.createElement('div');
-  elem.className = this.getWrapperSkinClassName(skin);
+  if (classes !== undefined) {
+    elem.className = classes;
+  }
   elem.innerHTML = '\
 <div class="rooverlay-overlay"></div>\
 <div class="rooverlay-content"></div>\
@@ -347,12 +350,16 @@ Rooverlay.prototype.hideClose = function hideClose(){
   this.elems.close.className = 'rooverlay-close rooverlay-hide';
 };
 
-Rooverlay.prototype.getWrapperSkinClassName = function hideClose(skinType){
-  var skin = '';
+Rooverlay.prototype.getWrapperSkinClassName = function getWrapperSkinClassName(skinType, extraClasses){
+  var classes = '';
   if (skinType === 'light') {
-    skin = ' rooverlay-skin-light';
+    classes = ' rooverlay-skin-light';
   }
-  return 'rooverlay-wrapper' + skin;
+  if (extraClasses) {
+    classes += ' ' + extraClasses;
+  }
+
+  return 'rooverlay-wrapper' + classes;
 };
 
 Rooverlay.prototype.renderSlide = function renderSlide(){
@@ -374,7 +381,8 @@ Rooverlay.prototype.renderSlide = function renderSlide(){
     this.iframeElem.onerror = function(){};
   }
 
-  this.elems.wrapper.className = this.getWrapperSkinClassName(this.options.skin) + ' rooverlay-type-' + slide.type;
+  var staticWrapperClasses = this.getWrapperSkinClassName(this.options.skin, this.options.extraClasses);
+  this.elems.wrapper.className = staticWrapperClasses + ' rooverlay-type-' + slide.type;
   this.checkArrows();
 
   var self = this;

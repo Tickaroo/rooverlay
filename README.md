@@ -69,6 +69,7 @@ var rooverlay = new Rooverlay({
   - **`slideIndex`**: Initial start index of the slideshow slides. (default `0`)
   - **`loop`**: Loops slideshow. (default `false`)
   - **`skin`**: Slideshow layout skin, possible values are `'light'` and `'dark'` (default `'dark'`, `undefined`)
+  - **`extraClasses`**: Adds extra classes to the class attribute of the root element `.rooverlay-wrapper` (default `undefined`)
   - **`pagination`**: Shows pagination. (default `false`)
   - **`paginationDescending`**: Counts the pages in descending order. (default `false`)
   - **`container`**: Element slideshow will be appended to. (default `document.body`)

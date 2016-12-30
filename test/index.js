@@ -95,6 +95,19 @@ describe('Rooverlay', function() {
       }, 6);
     });
 
+    it('should add "extraClasses" option', function(done) {
+      defaultRooverlay({
+        skin: 'light',
+        extraClasses: 'foo bar'
+      });
+
+      setTimeout(function(){
+        expect(elem.querySelector('.rooverlay-wrapper').classList.contains('foo')).to.equal(true);
+        expect(elem.querySelector('.rooverlay-wrapper').classList.contains('bar')).to.equal(true);
+        done();
+      }, 6);
+    });
+
     describe('pagination', function(){
       it('should render pagination', function(done) {
         var rooverlay = defaultRooverlay({

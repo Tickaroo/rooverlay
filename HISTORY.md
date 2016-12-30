@@ -1,5 +1,6 @@
-## - / 2016-12-30
+## 1.1.0 / 2016-12-30
 
+- Added new option `extraClasses`
 - Improved spinner layout (only works in browsers with css animation support)
 
 ## 1.0.0 / 2016-10-18
