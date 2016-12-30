@@ -1,6 +1,10 @@
+## - / 2016-12-30
+
+- Improved spinner layout (only works in browsers with css animation support)
+
 ## 1.0.0 / 2016-10-18
 
-- upgrade all modules to v1
+- Update to a major version to have better workflow with SemVer
 
 ## 0.2.6 / 2016-09-30
 

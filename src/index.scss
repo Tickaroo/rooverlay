@@ -32,13 +32,13 @@
   top: 0;
 }
 .rooverlay-loader {
-  height: 32px;
-  width: 32px;
   position: absolute;
+  height: 64px;
+  width: 64px;
+  margin-left: -32px;
+  margin-top: -32px;
   left: 50%;
-  top: 50% ;
-  margin-left: -16px;
-  margin-top: -16px;
+  top: 50%;
 }
 .rooverlay-content {
   position: absolute;
