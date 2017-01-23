@@ -43,6 +43,8 @@
 }
 .rooverlay-content {
   position: absolute;
+}
+.rooverlay-type-iframe .rooverlay-content {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
 }
