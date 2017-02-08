@@ -7,20 +7,22 @@
 .rooverlay-overlay {
   height: 100%;
   width: 100%;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   background-color: #000;
   background-color: rgba(0, 0, 0, 0.8);
 }
-.rooverlay-wrapper {
-  color: #f2f2f2;
-}
-.rooverlay-wrapper.rooverlay-skin-light {
-  color: #333;
-}
 .rooverlay-skin-light .rooverlay-overlay {
   background-color: #ccc;
+}
+.rooverlay-type-image.rooverlay-wrapper,
+.rooverlay-type-iframe-video.rooverlay-wrapper {
+  color: #f2f2f2;
+}
+.rooverlay-type-image.rooverlay-wrapper.rooverlay-skin-light
+.rooverlay-type-iframe-video.rooverlay-wrapper.rooverlay-skin-light {
+  color: #333;
 }
 .rooverlay-wrapper.rooverlay-skin-light .rooverlay-description {
   background-color: rgba(0, 0, 0, 0.6);
@@ -88,7 +90,7 @@
   height: 100%;
 }
 .rooverlay-wrapper .rooverlay-top-left {
-  float: left;
+  position: absolute;
 }
 .rooverlay-wrapper .rooverlay-top-right {
   float: right;
