@@ -76,6 +76,8 @@ function Rooverlay(options){
     addEvent(window, 'keydown', this.keydownCallback);
   }
 
+  document.documentElement.className = document.documentElement.className + ' rooverlay-enabled'
+
   this.options.container.appendChild(this.elems.wrapper);
   self.fit();
 }
@@ -530,6 +532,7 @@ Rooverlay.prototype.updatePagination = function afterSlideRender(){
 Rooverlay.prototype.close = Rooverlay.prototype.destroy = function destroy(){
   this.options.onBeforeClose();
   this.options.container.removeChild(this.elems.wrapper);
+  document.documentElement.className = document.documentElement.className.replace(' rooverlay-enabled', '');
   removeEvent(window, 'resize', this.resizeCallback);
   removeEvent(window, 'keydown', this.keydownCallback);
 };
