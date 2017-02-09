@@ -162,6 +162,10 @@ Jump to the index.
 
 - **`index`**: Slide index (default `0`)
 
+#### `instance.fit()`:
+
+Will center content element inside viewport.
+
 #### `instance.showLoading()`:
 
 Show loading spinner.
