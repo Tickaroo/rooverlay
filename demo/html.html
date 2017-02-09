@@ -9,6 +9,10 @@
       body {
         font-family: sans-serif;
       }
+      .my-overlay {
+        width: 400px;
+        background: white;
+      }
     </style>
   </head>
   <body>
@@ -75,7 +79,7 @@
         slides: [{
           height: 500,
           type: 'html',
-          html: '<p>foo</p><p>foo</p><p>foo</p><p>foo</p><p>foo</p><p>foo</p><p>foo</p>'
+          html: '<div class="my-overlay"><p>foo</p><p>foo</p><p>foo</p><p>foo</p><p>foo</p><p>foo</p><p>foo</p><p>foo</p><p>foo</p><p>foo</p><p>foo</p><p>foo</p><p>foo</p><p>foo</p><p>foo</p></div>'
         }]
       });
     </script>

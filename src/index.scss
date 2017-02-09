@@ -1,5 +1,5 @@
 .rooverlay-enabled {
-  overflow: hidden;
+  overflow-y: hidden;
 }
 .rooverlay-hide {
   display: none;
@@ -36,6 +36,13 @@
   left: 0;
   top: 0;
 }
+.rooverlay-wrapper.rooverlay-wrapper--scroll {
+  overflow-y: auto;
+}
+.rooverlay-wrapper.rooverlay-wrapper--scroll .rooverlay-content {
+  margin-bottom: 10px;
+  height: auto;
+}
 .rooverlay-loader {
   position: absolute;
   height: 64px;
@@ -50,7 +57,8 @@
   position: absolute;
 }
 .rooverlay-type-iframe .rooverlay-content {
-  overflow-y: scroll;
+  overflow: auto;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
 }
 .rooverlay-content iframe {

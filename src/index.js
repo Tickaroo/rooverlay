@@ -129,7 +129,6 @@ Rooverlay.prototype.wrapperTemplate = function wrapperTemplate(classes){
   }
   elem.innerHTML = '\
 <div class="rooverlay-overlay"></div>\
-<div class="rooverlay-content"></div>\
 <a href="#" class="rooverlay-left rooverlay-hide"></a>\
 <a href="#" class="rooverlay-right rooverlay-hide"></a>\
 <div class="rooverlay-top">\
@@ -144,6 +143,7 @@ Rooverlay.prototype.wrapperTemplate = function wrapperTemplate(classes){
   </div>\
 </div>\
 <div class="rooverlay-bottom"></div>\
+<div class="rooverlay-content"></div>\
 <div class="rooverlay-loader rooverlay-hide"></div>';
   return elem;
 };
@@ -154,17 +154,35 @@ Rooverlay.prototype.fit = function fit(){
   var holderHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
   var sizeSettings = this._getSizeSettings(this.slide, this.imageElem);
-  var size = this._calculateSize(sizeSettings, holderWidth - this.getMarginWidth(), holderHeight - this.getMarginHeight());
+  var marginHeight = this.getMarginHeight();
+
+  if (this.slide.type === 'iframe' && holderHeight < 500) {
+    marginHeight = 20;
+  }
+
+  var size = this._calculateSize(sizeSettings, holderWidth - this.getMarginWidth(), holderHeight - marginHeight);
   if ( ! size){
     return;
   }
 
+  var topSpace = (holderHeight - size.height) / 2;
+  if (this.slide.type === 'html' && holderHeight - marginHeight < sizeSettings.height) {
+    if (this.elems.wrapper.className.indexOf('rooverlay-wrapper--scroll') === -1) {
+      this.elems.wrapper.className = this.elems.wrapper.className + ' rooverlay-wrapper--scroll';
+    }
+    size.height = 0;
+    topSpace = 10;
+  }
+  else {
+    this.elems.wrapper.className = this.elems.wrapper.className.replace(new RegExp(' rooverlay-wrapper--scroll', 'g'), '');
+  }
+
   this.elems.content.style.width = size.width + 'px';
-  this.elems.content.style.height = size.height + 'px';
+  this.elems.content.style.height = size.height ? (size.height + 'px') : '';
   this.elems.content.style.minWidth = size.minWidth ? (size.minWidth + 'px') : '';
   this.elems.content.style.minHeight = size.minHeight ? (size.minHeight + 'px') : '';
 
-  this.elems.content.style.top = (holderHeight - size.height) / 2 + 'px';
+  this.elems.content.style.top = topSpace ? (topSpace + 'px') : '';
   this.elems.content.style.left = (holderWidth - size.width) / 2 + 'px';
   this._balanceDescriptionHeight();
 };
@@ -200,6 +218,14 @@ Rooverlay.prototype._getSizeSettings = function _getSizeSettings(slide, imageEle
       sizeSettings.width = slide.width || 800;
       sizeSettings.height = slide.height || 450;
       sizeSettings.aspectRatio = slide.aspectRatio || true;
+    break;
+    case 'html':
+      sizeSettings.width = slide.width || this.elems.content.lastChild.scrollWidth;
+      if ( ! sizeSettings.width) {
+        return sizeSettings;
+      }
+      sizeSettings.height = slide.height || this.elems.content.lastChild.scrollHeight || sizeSettings.height;
+      sizeSettings.aspectRatio = slide.aspectRatio || false;
     break;
     default:
       sizeSettings.width = slide.width || 600;
