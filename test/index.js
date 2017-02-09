@@ -247,6 +247,30 @@ describe('Rooverlay', function() {
           }, 6);
         }, 6);
       });
+
+      it('should show/hide descriptionElement', function(done) {
+        var descriptionElem = jsdomDocument.createElement('div');
+        descriptionElem.innerHTML = '<p>big test</p>';
+        var rooverlay = defaultRooverlay({
+          slides: [{
+            type: 'image',
+            title: 'Roo',
+            descriptionContent: descriptionElem,
+            src: 'roo-pic-2.jpg'
+          }, {
+            type: 'image',
+            src: 'roo-pic-3.jpg'
+          }]
+        });
+        setTimeout(function(){
+          expect(rooverlay.elems.content.innerHTML).to.contain('<p>big test</p>');
+          rooverlay.nextSlide();
+          setTimeout(function(){
+            expect(rooverlay.elems.title.innerHTML).to.not.contain('<p>big test</p>');
+            done();
+          }, 6);
+        }, 6);
+      });
     });
 
     describe('loading', function(){

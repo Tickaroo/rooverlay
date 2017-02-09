@@ -1,3 +1,9 @@
+## 1.2.0 / 2017-02-09
+
+- Added new option for `image` and `iframe-video` slides `descriptionElement`
+- Added support for scrollable `html` and `iframe` slide types
+- Locked page background scrolling
+
 ## 1.1.0 / 2016-12-30
 
 - Added new option `extraClasses`
