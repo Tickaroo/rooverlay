@@ -1,3 +1,7 @@
+## 1.2.1 / 2017-02-14
+
+- Fixed `closeOnOverlayClick` option sometimes not working properly after `updateOptions()` was called
+
 ## 1.2.0 / 2017-02-09
 
 - Added new option for `image` and `iframe-video` slides `descriptionElement`

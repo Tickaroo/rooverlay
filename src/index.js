@@ -329,12 +329,12 @@ Rooverlay.prototype.bindEvents = function bindEvents(){
     preventAndStopDefaultEvent(e);
     self.destroy();
   });
-  if (this.options.closeOnOverlayClick){
-    addEvent(this.elems.overlay, 'click', function(e){
+  addEvent(this.elems.overlay, 'click', function(e){
+    if (self.options.closeOnOverlayClick){
       preventAndStopDefaultEvent(e);
       self.destroy();
-    });
-  }
+    }
+  });
 };
 
 Rooverlay.prototype.previousSlide = function previousSlide(){
