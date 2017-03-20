@@ -344,7 +344,9 @@ Rooverlay.prototype.previousSlide = function previousSlide(){
       this.currentSlideIndex = this.lastSlideIndex;
     }
   }
-  this.renderSlide();
+  if (this.options.slides.length > 1) {
+    this.renderSlide();
+  }
 };
 
 Rooverlay.prototype.nextSlide = function nextSlide(){
@@ -354,7 +356,9 @@ Rooverlay.prototype.nextSlide = function nextSlide(){
       this.currentSlideIndex = this.lastSlideIndex;
     }
   }
-  this.renderSlide();
+  if (this.options.slides.length > 1) {
+    this.renderSlide();
+  }
 };
 
 Rooverlay.prototype.jumpToSlide = function jumpToSlide(index){
@@ -486,6 +490,7 @@ Rooverlay.prototype.renderSlide = function renderSlide(){
       this.changeToContentClose();
     break;
     case 'html':
+      self.elems.content.innerHTML = '';
       var elem = document.createElement('div');
       elem.className = 'rooverlay-content-html';
       if (slide.html){

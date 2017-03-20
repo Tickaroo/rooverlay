@@ -1,3 +1,8 @@
+## 1.2.2 / 2017-03-20
+
+- Optimized `nextSlide` and `previousSlide` rendering
+- Fixed slide html `type` content reset
+
 ## 1.2.1 / 2017-02-14
 
 - Fixed `closeOnOverlayClick` option sometimes not working properly after `updateOptions()` was called
