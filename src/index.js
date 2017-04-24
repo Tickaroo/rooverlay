@@ -224,7 +224,7 @@ Rooverlay.prototype._getSizeSettings = function _getSizeSettings(slide, imageEle
       if ( ! sizeSettings.width) {
         return sizeSettings;
       }
-      sizeSettings.height = slide.height || this.elems.content.lastChild.scrollHeight || sizeSettings.height;
+      sizeSettings.height = slide.height || this.elems.content.lastChild.clientHeight || sizeSettings.height;
       sizeSettings.aspectRatio = slide.aspectRatio || false;
     break;
     default:
