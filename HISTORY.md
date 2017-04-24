@@ -1,3 +1,7 @@
+## 1.2.3 / 2017-04-24
+
+- Fix: use 'clientHeight' instead of 'scrollHeight' to avoid autocomplete jumping
+
 ## 1.2.2 / 2017-03-20
 
 - Optimized `nextSlide` and `previousSlide` rendering
