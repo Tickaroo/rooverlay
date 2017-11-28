@@ -32,7 +32,7 @@ function removeEvent(element, eventName, callback){
 }
 
 function Rooverlay(options){
-  options = options || {};
+  options = options || {};
   var wrapperElem = this.wrapperTemplate(this.getWrapperSkinClassName(options.skin, options.extraClasses));
   this.elems = {
     wrapper: wrapperElem,
@@ -112,14 +112,14 @@ Rooverlay.prototype.updateOptions = function updateOptions(options){
     container:  options.container  || document.body,
     loop:       options.loop,
     i18n:       options.i18n       || {missing: 'Missing'},
-    extraClasses: options.extraClasses || '',
+    extraClasses: options.extraClasses || '',
     paginationDescending:    options.paginationDescending === true,
     disableKeyboardControls: options.disableKeyboardControls === true,
     onBeforeClose:       options.onBeforeClose       || noop,
     onAfterSlideRender:  options.onAfterSlideRender  || noop,
     onBeforeSlideRender: options.onBeforeSlideRender || noop
   };
-  this.updateSlidesAndRerenderWithIndex(options.slides, options.slideIndex || 0);
+  this.updateSlidesAndRerenderWithIndex(options.slides, options.slideIndex || 0);
 };
 
 Rooverlay.prototype.wrapperTemplate = function wrapperTemplate(classes){
@@ -208,29 +208,29 @@ Rooverlay.prototype._getSizeSettings = function _getSizeSettings(slide, imageEle
   };
   switch (slide.type){
     case 'image':
-      sizeSettings.width = slide.width || imageElem.naturalWidth || imageElem.width;
-      sizeSettings.height = slide.height || imageElem.naturalHeight || imageElem.height;
+      sizeSettings.width = slide.width || imageElem.naturalWidth || imageElem.width;
+      sizeSettings.height = slide.height || imageElem.naturalHeight || imageElem.height;
       sizeSettings.minWidth = sizeSettings.minWidth || 300;
       sizeSettings.minHeight = sizeSettings.minHeight || 300;
-      sizeSettings.aspectRatio = slide.aspectRatio || true;
+      sizeSettings.aspectRatio = slide.aspectRatio || true;
     break;
     case 'iframe-video':
-      sizeSettings.width = slide.width || 800;
-      sizeSettings.height = slide.height || 450;
-      sizeSettings.aspectRatio = slide.aspectRatio || true;
+      sizeSettings.width = slide.width || 800;
+      sizeSettings.height = slide.height || 450;
+      sizeSettings.aspectRatio = slide.aspectRatio || true;
     break;
     case 'html':
       sizeSettings.width = slide.width || this.elems.content.lastChild.scrollWidth;
       if ( ! sizeSettings.width) {
         return sizeSettings;
       }
-      sizeSettings.height = slide.height || this.elems.content.lastChild.clientHeight || sizeSettings.height;
-      sizeSettings.aspectRatio = slide.aspectRatio || false;
+      sizeSettings.height = slide.height || this.elems.content.lastChild.clientHeight || sizeSettings.height;
+      sizeSettings.aspectRatio = slide.aspectRatio || false;
     break;
     default:
-      sizeSettings.width = slide.width || 600;
-      sizeSettings.height = slide.height || sizeSettings.height;
-      sizeSettings.aspectRatio = slide.aspectRatio || false;
+      sizeSettings.width = slide.width || 600;
+      sizeSettings.height = slide.height || sizeSettings.height;
+      sizeSettings.aspectRatio = slide.aspectRatio || false;
     break;
   }
   return sizeSettings;
@@ -362,7 +362,7 @@ Rooverlay.prototype.nextSlide = function nextSlide(){
 };
 
 Rooverlay.prototype.jumpToSlide = function jumpToSlide(index){
-  this.currentSlideIndex = index || 0;
+  this.currentSlideIndex = index || 0;
   this.renderSlide();
 };
 
@@ -554,7 +554,7 @@ Rooverlay.prototype.afterSlideRender = function afterSlideRender(){
   this.options.onAfterSlideRender();
 };
 
-Rooverlay.prototype.updatePagination = function afterSlideRender(){
+Rooverlay.prototype.updatePagination = function updatePagination(){
   if (this.options.pagination){
     if (this.options.paginationDescending){
       this.elems.pagination.innerHTML = (this.lastSlideIndex - this.currentSlideIndex + 1) + '/' + (this.lastSlideIndex + 1);
@@ -578,7 +578,7 @@ Rooverlay.prototype.getMarginWidth = function getMarginWidth(){
     return this.options.marginWidth;
   }
   if ( ! this.elems.right.offsetWidth){
-    return (this.elems.left.offsetWidth || 10) * 2;
+    return (this.elems.left.offsetWidth || 10) * 2;
   }
   if ( ! this.elems.left.offsetWidth){
     return this.elems.right.offsetWidth * 2;
