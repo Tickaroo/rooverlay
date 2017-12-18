@@ -94,7 +94,7 @@ var rooverlay = new Rooverlay({
     - **`minHeight`**: Minimal image height, if window size allows it. (default `300`)
     - **`aspectRatio`**: Whether or not to respect image size ratio on resize. (default `true`)
     - **`description`**: Description text/HTML string appended to the content element. (default `undefined`)
-    - **`descriptionElement`**: Description DOM element appended to the content element. (default `undefined`)
+    - **`descriptionContent`**: Description DOM element appended to the content element. (default `undefined`)
     - **`title`**: Title text/HTML string appended to the top row title element. (default `undefined`)
 
   #### Video iframe slide:
@@ -106,7 +106,7 @@ var rooverlay = new Rooverlay({
     - **`minHeight`**: Minimal iframe height, if window size allows it. (default `undefined`)
     - **`aspectRatio`**: Whether or not to respect iframe size ratio on resize. (default `true`)
     - **`description`**: Same as in `image`
-    - **`descriptionElement`**: Same as in `image`
+    - **`descriptionContent`**: Same as in `image`
     - **`title`**: Same as in `image`
 
   #### Iframe slide:
